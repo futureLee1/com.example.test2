@@ -73,5 +73,9 @@ public class TestPlugin extends CordovaPlugin {
             return STATUS_NFC_OK;
         }
     }
+
+    private Activity getActivity() {
+        return this.cordova.getActivity();
+    }
 	
 }
