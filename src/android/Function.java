@@ -16,7 +16,7 @@ public class Function {
 		byte[] result = null;
 
 		try {
-			byteApdu = util.conversion.hexStringToByteArray(strCmd);
+			byteApdu = Conversion.hexStringToByteArray(strCmd);
 			iso.setTimeout(5000);
 			result = iso.transceive(byteApdu);
 		} catch (IOException e) {
@@ -25,7 +25,7 @@ public class Function {
 			return -1;
 		}
 
-		strResponse[0] = util.conversion.toHexString(result);
+		strResponse[0] = Conversion.toHexString(result);
 
 		if (strResponse[0].equals("")) {
 			strErrMsg[0] = "Apdu Response data is null";
@@ -68,21 +68,21 @@ public class Function {
 		String MAC = "";
 
 		// Key 생성
-		KeyBlock = util.conversion.Integrity_SHA256(R1R2);
+		KeyBlock = Conversion.Integrity_SHA256(R1R2);
 		if (KeyBlock.equals("")) {
 			return -1;
 		}
 		MutualauthKey = KeyBlock.substring(0, 32);
 
 		// HostCryptogram 생성
-		HostCryptogram = util.conversion.AES_CBC_128_ENCRYPT(HR + Padding,
+		HostCryptogram = Conversion.AES_CBC_128_ENCRYPT(HR + Padding,
 				MutualauthKey);
 		if (HostCryptogram.equals("")) {
 			return -1;
 		}
 
 		// MAC 생성
-		MAC = util.conversion.Integrity_SHA256(HostCryptogram + HR);
+		MAC = Conversion.Integrity_SHA256(HostCryptogram + HR);
 		if (KeyBlock.equals("")) {
 			return -1;
 		}
@@ -107,13 +107,13 @@ public class Function {
 
 	// 세션키 생성 수행
 	public static int CreateSessionKey(String Crytogram, String MAC) {
-		String HostCryptogram = util.conversion.AES_CBC_128_DECRYPT(Crytogram, MutualauthKey);
+		String HostCryptogram = Conversion.AES_CBC_128_DECRYPT(Crytogram, MutualauthKey);
 		if (HostCryptogram.equals("")) {
 			return -1;
 		}
 
 		// MAC 검증
-		String MAC_Verify = util.conversion.Integrity_SHA256(Crytogram + HostCryptogram);
+		String MAC_Verify = Conversion.Integrity_SHA256(Crytogram + HostCryptogram);
 		if (MAC_Verify.equals("")) {
 			return -1;
 		}

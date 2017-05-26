@@ -25,6 +25,7 @@
 
     <source-file src="src/android/TestPlugin.java" target-dir="src/com/example/hello/"/>
     <source-file src="src/android/Function.java" target-dir="src/com/example/hello/"/>
+    <source-file src="src/android/Conversion.java" target-dir="src/com/example/hello/"/>
   </platform>
 
 </plugin>
