@@ -54,9 +54,11 @@ public class TestPlugin extends CordovaPlugin {
         Log.d(TAG, "execute " + action);
 
         if (!getNfcStatus().equals(STATUS_NFC_OK)) {
+            Log.d(TAG, "!getNfcStatus().equals(STATUS_NFC_OK)");
             callbackContext.error(getNfcStatus());
             return true; // short circuit
         } else {
+            Log.d(TAG, "getNfcStatus().equals(STATUS_NFC_OK)");
             String message = "Hello, NFC is On ! ";
             callbackContext.success(message);
         }
@@ -66,6 +68,8 @@ public class TestPlugin extends CordovaPlugin {
 	}
 
     private String getNfcStatus() {
+        Log.d(TAG, "In_getNfcStatus()");
+
         NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
         if (nfcAdapter == null) {
             return STATUS_NO_NFC;
@@ -77,6 +81,7 @@ public class TestPlugin extends CordovaPlugin {
     }
 
     private Activity getActivity() {
+        Log.d(TAG, "In_getActivity()");
         return this.cordova.getActivity();
     }
 	
