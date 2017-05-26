@@ -5,11 +5,11 @@ module.exports = {
         cordova.exec(successCallback, errorCallback, "TestPlugin", ""+action, [name]);
     }*/
 
-    nfcState: function (successCallback, errorCallback) {
+    /*nfcState: function (successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "TestPlugin", "checkNfc");
-    }
+    }*/
 
-    nfcState2: function (name, successCallback, errorCallback, action) {
+    nfcState: function (name, successCallback, errorCallback) {
         cordova.exec(successCallback, errorCallback, "TestPlugin", "checkNfc", [name]);
     }
 };
