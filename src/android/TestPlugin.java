@@ -5,10 +5,12 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import android.nfc.*;
+import android.nfc.tech.IsoDep;
 import android.util.Log;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
+import java.io.IOException;
 
 public class TestPlugin extends CordovaPlugin {
 
@@ -201,9 +203,9 @@ public class TestPlugin extends CordovaPlugin {
         String strErrMsg[] = new String[1];
         
         res = 0;
-        res = APDU.Function.SelectFile(iso, strResponse, strErrMsg);
+        res = Function.SelectFile(iso, strResponse, strErrMsg);
         if(res < 0){
-            readResult.setText("카드 검색 실패");
+            Log.e("SelectFile","카드검색 실패");
             strResponse = null;
             strErrMsg = null;
             return;
@@ -217,8 +219,16 @@ public class TestPlugin extends CordovaPlugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }  
+    }
+
+    public int find(String[] arr, String s){
+        for(int i=0; i<arr.length; i++){
+            if(arr[i].indexOf(s) >= 0){
+                return i;
+            }
         }
-        
+        return -1;
     }
 
 
