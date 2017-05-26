@@ -136,16 +136,20 @@ public class TestPlugin extends CordovaPlugin {
     }*/
 
     @Override
-    public void onPause() {
-        Log.d(TAG, "onPause " + getIntent());
-        super.onPause();
+    public void onPause(boolean multitasking) {
+        Log.d(TAG, "onPause " + getIntent()+', '+multitasking);
+        super.onPause(multitasking);
         
-        stopNfc();
+        if(multitasking) {
+            stopNfc();
+        }
+        
     }
 
     @Override
-    public void onResume() {
-        Log.d(TAG, "onResume " + getIntent());
+    public void onResume(boolean multitasking) {
+        Log.d(TAG, "onResume " + getIntent()+', '+multitasking);
+        super.onResume(multitasking);
         startNfc();
     }
 
@@ -206,7 +210,7 @@ public class TestPlugin extends CordovaPlugin {
         res = 0;
         res = Function.SelectFile(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("SelectFile","카드검색 실패");
+            Log.e("SelectFile","Card Select Failed");
             strResponse = null;
             strErrMsg = null;
             return;
