@@ -58,7 +58,7 @@ public class TestPlugin extends CordovaPlugin {
             String message = "NFC is off.";
             callbackContext.error(message);
             return true; // short circuit
-        } else if (STATUS_NO_NFC) {
+        } else if (getNfcStatus().equals(STATUS_NO_NFC)) {
             Log.d(TAG, "getNfcStatus().equals(STATUS_NO_NFC)");
             String message = "Device can not use NFC.";
             callbackContext.error(message);
