@@ -53,13 +53,19 @@ public class TestPlugin extends CordovaPlugin {
 
         Log.d(TAG, "execute " + action);
 
-        if (!getNfcStatus().equals(STATUS_NFC_OK)) {
-            Log.d(TAG, "!getNfcStatus().equals(STATUS_NFC_OK)");
-            callbackContext.error(getNfcStatus());
+        if (getNfcStatus().equals(STATUS_NFC_DISABLED)) {
+            Log.d(TAG, "getNfcStatus().equals(STATUS_NFC_DISABLED)");
+            String message = "NFC is off.";
+            callbackContext.error(message);
             return true; // short circuit
+        } else if (STATUS_NO_NFC) {
+            Log.d(TAG, "getNfcStatus().equals(STATUS_NO_NFC)");
+            String message = "Device can not use NFC.";
+            callbackContext.error(message);
+            return true;
         } else {
             Log.d(TAG, "getNfcStatus().equals(STATUS_NFC_OK)");
-            String message = "Hello, NFC is On ! ";
+            String message = "Welcome ! ";
             callbackContext.success(message);
         }
 
