@@ -219,12 +219,6 @@ public class TestPlugin extends CordovaPlugin {
             }
         }
         
-        Intent intent = new Intent(getBaseContext(), ViewOTP.class);
-        intent.putExtra("OTP", OTP);
-        
-        OTP = "";
-        
-        startActivity(intent);
     }
 
 
