@@ -20,6 +20,8 @@ public class TestPlugin extends CordovaPlugin {
 
     private static final String TAG = "NfcPlugin";
 
+    private PendingIntent pendingIntent = null;
+
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
