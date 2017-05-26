@@ -61,6 +61,8 @@ public class TestPlugin extends CordovaPlugin {
             callbackContext.success(message);
         }
 
+        return true;
+
 	}
 
     private String getNfcStatus() {
