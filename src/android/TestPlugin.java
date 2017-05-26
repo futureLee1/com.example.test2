@@ -154,7 +154,6 @@ public class TestPlugin extends CordovaPlugin {
         Log.d(TAG, "onNewIntent " + intent);
         super.onNewIntent(intent);
         setIntent(intent);
-        savedIntent = intent;
         parseMessage();
     }
 	
