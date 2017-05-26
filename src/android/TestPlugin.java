@@ -20,38 +20,6 @@ public class TestPlugin extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		
-		/*if (action.equals("greet")) {
-
-            String name = args.getString(0);
-            String message = "Hello, " + name + "\n action is "+args.getString(0);
-            callbackContext.success(message);
-
-            return true;
-
-        } else {
-            String message = "action is "+args.getString(0);
-            callbackContext.error("Error, message");
-
-            return false;
-
-        }
-
-        if (action.equals("nfcState")) {
-
-            String actionString = args.getString(0);
-            String message = "Hello, " + name + "\n action is "+args.getString(0);
-            callbackContext.success(message);
-
-            return true;
-
-        } else {
-            String message = "action is "+args.getString(0);
-            callbackContext.error("Error, message");
-
-            return false;
-
-        }*/
 
         Log.d(TAG, "execute " + action);
 
