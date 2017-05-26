@@ -2,8 +2,6 @@ package com.example.hello;
 
 import java.io.IOException;
 
-import org.apache.commons.lang.StringUtils;
-
 import android.nfc.tech.IsoDep;
 
 public class Function {
