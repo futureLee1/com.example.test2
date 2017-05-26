@@ -137,7 +137,7 @@ public class TestPlugin extends CordovaPlugin {
 
     @Override
     public void onPause(boolean multitasking) {
-        Log.d(TAG, "onPause " + getIntent()+', '+multitasking);
+        Log.d(TAG, "onPause " + getIntent()+", "+multitasking);
         super.onPause(multitasking);
         
         if(multitasking) {
@@ -148,7 +148,7 @@ public class TestPlugin extends CordovaPlugin {
 
     @Override
     public void onResume(boolean multitasking) {
-        Log.d(TAG, "onResume " + getIntent()+', '+multitasking);
+        Log.d(TAG, "onResume " + getIntent()+", "+multitasking);
         super.onResume(multitasking);
         startNfc();
     }
