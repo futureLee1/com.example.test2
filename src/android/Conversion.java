@@ -4,7 +4,6 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -13,7 +12,6 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import android.app.Activity;
 import android.util.Log;
 
 public class Conversion {
@@ -110,7 +108,7 @@ public class Conversion {
 		return str;
 	}
 
-	// ¹®ÀÚ¿­À» Çí»ç ½ºÆ®¸µÀ¸·Î º¯È¯
+	// ë¬¸ìì—´ì„ í—¥ì‚¬ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€í™˜
 	public static String stringToHex(String s) {
 		String result = "";
 
@@ -121,7 +119,7 @@ public class Conversion {
 		return result;
 	}
 
-	// SHA256 ¾Ë°í¸®Áò (¹«°á¼º ÀÎÁõ)
+	// SHA256 ì•Œê³ ë¦¬ì¦˜ (ë¬´ê²°ì„± ì¸ì¦)
 	public static String Integrity_SHA256(String data) {
 		MessageDigest md = null;
 		try {
@@ -138,7 +136,7 @@ public class Conversion {
 		return bytesToHex(md.digest());
 	}
 	
-	// Sha256 ¾ÏÈ£È­ ¾Ë°í¸®Áò
+	// Sha256 ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜
 	public static String SHA256(String planText) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -168,37 +166,6 @@ public class Conversion {
 			throw new RuntimeException();
 		}
 	}
-	
-	// Sha256 ¾ÏÈ£È­ ¾Ë°í¸®Áò (°Å·¡¿¬µ¿ Á¤º¸ ¾ÏÈ£È­¿¡ »ç¿ë)
-	public static String transSHA256(String planText) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(planText.getBytes("EUC-KR"));
-			byte byteData[] = md.digest();
-
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < byteData.length; i++) {
-				sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-			}
-
-			StringBuffer hexString = new StringBuffer();
-			for (int i = 0; i < byteData.length; i++) {
-				String hex = Integer.toHexString(0xff & byteData[i]);
-				if (hex.length() == 1) {
-					hexString.append('0');
-				}
-				hexString.append(hex);
-			}
-					
-			planText = "";
-			
-			return hexString.toString();
-				
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-	}
 
 	public static String bytesToHex(byte[] bytes) {
 		StringBuffer result = new StringBuffer();
@@ -213,7 +180,7 @@ public class Conversion {
 		return strResult;
 	}
 
-	// AES_CBC_128 ¾ÏÈ£È­ ¾Ë°í¸®Áò
+	// AES_CBC_128 ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜
 	public static String AES_CBC_128_ENCRYPT(String plainText, String passkey) {
 		byte[] encrypted = null;
 
@@ -268,7 +235,7 @@ public class Conversion {
 		return hexText;
 	}
 
-	// AES_CBC_128 º¹È£È­ ¾Ë°í¸®Áò
+	// AES_CBC_128 ë³µí˜¸í™” ì•Œê³ ë¦¬ì¦˜
 	public static String AES_CBC_128_DECRYPT(String plainText, String passkey) {
 		byte[] encrypted = null;
 
