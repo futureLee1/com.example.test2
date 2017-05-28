@@ -52,7 +52,9 @@ public class TestPlugin extends CordovaPlugin {
 	}
 
     private void createPendingIntent() {
+        Log.d(TAG, "createPendingIntent()");
         if (pendingIntent == null) {
+            Log.d(TAG, "createPendingIntent()_null");
             Activity activity = getActivity();
             Intent intent = new Intent(activity, activity.getClass());
             intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -79,18 +81,22 @@ public class TestPlugin extends CordovaPlugin {
     }
 
     private PendingIntent getPendingIntent() {
+        Log.d(TAG, "getPendingIntent()");
         return pendingIntent;
     }
 
     private Intent getIntent() {
+        Log.d(TAG, "getIntent()");
         return getActivity().getIntent();
     }
 
     private void setIntent(Intent intent) {
+        Log.d(TAG, "setIntent()");
         getActivity().setIntent(intent);
     }
 
     private void startNfc() {
+        Log.d(TAG, "startNfc()");
         createPendingIntent(); // onResume can call startNfc before execute
 
         getActivity().runOnUiThread(new Runnable() {
@@ -137,6 +143,7 @@ public class TestPlugin extends CordovaPlugin {
 
     @Override
     public void onPause(boolean multitasking) {
+        Log.d(TAG, "onPause()");
         Log.d(TAG, "onPause " + getIntent()+", "+multitasking);
         super.onPause(multitasking);
         
@@ -148,6 +155,7 @@ public class TestPlugin extends CordovaPlugin {
 
     @Override
     public void onResume(boolean multitasking) {
+        Log.d(TAG, "onResume()");
         Log.d(TAG, "onResume " + getIntent()+", "+multitasking);
         super.onResume(multitasking);
         startNfc();
@@ -155,6 +163,7 @@ public class TestPlugin extends CordovaPlugin {
 
     @Override
     public void onNewIntent(Intent intent) {
+        Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
         super.onNewIntent(intent);
         setIntent(intent);
@@ -162,6 +171,7 @@ public class TestPlugin extends CordovaPlugin {
     }
 	
     void parseMessage() {
+        Log.d(TAG, "parseMessage()");
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -203,6 +213,7 @@ public class TestPlugin extends CordovaPlugin {
     }
 
     private void Certification(IsoDep iso) {
+        Log.d(TAG, "Certification()");
         int res = 0;
         String strResponse[] = new String[1];
         String strErrMsg[] = new String[1];
@@ -228,6 +239,7 @@ public class TestPlugin extends CordovaPlugin {
     }
 
     public int find(String[] arr, String s){
+        Log.d(TAG, "find()");
         for(int i=0; i<arr.length; i++){
             if(arr[i].indexOf(s) >= 0){
                 return i;
