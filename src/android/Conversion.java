@@ -1,4 +1,4 @@
-package util;
+package com.example.hello;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -16,7 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 import android.app.Activity;
 import android.util.Log;
 
-public class conversion {
+public class Conversion {
 
 	public static byte[] hexStringToByteArray(String s) {
 		byte[] b = new byte[s.length() / 2];
