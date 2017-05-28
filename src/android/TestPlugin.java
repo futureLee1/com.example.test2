@@ -39,11 +39,8 @@ public class TestPlugin extends CordovaPlugin {
             return true;
         } else {
             Log.d(TAG, "getNfcStatus().equals(STATUS_NFC_OK)");
-            /*String message = "Welcome ! ";
-            callbackContext.success(message);*/
-
-            createPendingIntent();
-
+            String message = "Welcome ! ";
+            callbackContext.success(message);
 
         }
 
@@ -167,7 +164,32 @@ public class TestPlugin extends CordovaPlugin {
         Log.d(TAG, "onNewIntent " + intent);
         super.onNewIntent(intent);
         setIntent(intent);
-        parseMessage();
+        /*parseMessage();*/
+
+        Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                
+        String[] TechList = tag.getTechList();
+        if(find(TechList, "android.nfc.tech.IsoDep") < 0){
+            return;
+        }
+
+        IsoDep iso = IsoDep.get(tag);
+
+        try{
+            if(!iso.isConnected()){
+                iso.connect();
+            }
+
+            Certification(iso);
+                        
+            if(iso.isConnected()){
+                iso.close();
+            }
+
+        } catch(IOException e) {
+            Log.e("IsoDep Error", e.toString());
+        }
+        
     }
 	
     void parseMessage() {
