@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import java.io.IOException;
+import android.widget.Toast;
 
 public class TestPlugin extends CordovaPlugin {
 
@@ -42,7 +43,7 @@ public class TestPlugin extends CordovaPlugin {
             String message = "Welcome ! ";
             callbackContext.success(message);
 
-            createPendingIntent();
+            startNfc();
 
         }
 
@@ -251,7 +252,13 @@ public class TestPlugin extends CordovaPlugin {
             return;
         }
 
-        Log.e("Care_Result",""+strResponse[0]);
+        Log.e("Card_Result",""+strResponse[0]);
+
+        String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
+
+        Log.e("strResult",""+strResult);        
+
+        Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();
                     
         if(iso.isConnected()){
             try {
