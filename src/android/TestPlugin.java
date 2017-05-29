@@ -42,6 +42,8 @@ public class TestPlugin extends CordovaPlugin {
             String message = "Welcome ! ";
             callbackContext.success(message);
 
+            createPendingIntent();
+
         }
 
         return true;
