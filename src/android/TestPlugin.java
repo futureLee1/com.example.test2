@@ -23,10 +23,15 @@ public class TestPlugin extends CordovaPlugin {
 
     private PendingIntent pendingIntent = null;
 
+    String jsonData = "";
+
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
-        Log.d(TAG, "execute " + action);
+        Log.d(TAG, "execute_Action " + action);
+        Log.d(TAG, "execute_args " + args.getString(0));
+
+        jsonData = args.getString(0);
 
         if (getNfcStatus().equals(STATUS_NFC_DISABLED)) {
             Log.d(TAG, "getNfcStatus().equals(STATUS_NFC_DISABLED)");
@@ -183,7 +188,13 @@ public class TestPlugin extends CordovaPlugin {
                 iso.connect();
             }
 
-            Certification(iso);
+            if(jsonData.equals("Select")) {
+                Certification(iso);
+            } else {
+                Toast.makeText(getActivity(), "ZZZZ", Toast.LENGTH_SHORT).show();
+            }
+
+            
                         
             if(iso.isConnected()){
                 iso.close();
