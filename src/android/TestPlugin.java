@@ -31,6 +31,25 @@ public class TestPlugin extends CordovaPlugin {
         Log.d(TAG, "execute_Action " + action);
         Log.d(TAG, "execute_args " + args.getString(0));
 
+        String encodingData = Conversion.AES_CBC_128_ENCRYPT("12345678123456781234567800000000", "12345612345612345612345612345622");
+        
+        String decodingData = Conversion.AES_CBC_128_DECRYPT(encodingData, "12345612345612345612345612345622");
+
+        String sha256Data = Conversion.SHA256("Test Data is Futurenmore");
+        
+        String hexToDexData = Conversion.getHexToDec("abcdefff");
+        
+        int a = 20;
+        int b = 4;
+        
+        int calData = a / b;
+        
+        Log.e("encoding", ""+encodingData);
+        Log.e("decoding", ""+decodingData);
+        Log.e("sha256_Data", ""+sha256Data);
+        Log.e("hexToDex", ""+hexToDexData);
+        Log.e("calculate", ""+calData);
+
         jsonData = args.getString(0);
 
         if (getNfcStatus().equals(STATUS_NFC_DISABLED)) {
