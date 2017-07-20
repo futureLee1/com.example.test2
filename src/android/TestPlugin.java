@@ -289,6 +289,17 @@ public class TestPlugin extends CordovaPlugin {
         Log.e("strResult",""+strResult);        
 
         Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();
+
+        res = 0;
+        res = Function.GetChallenge(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("GetChallenge","R1 Create Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+        
+        Log.e("GetChallenge_Data", strResponse[0]);
                     
         if(iso.isConnected()){
             try {

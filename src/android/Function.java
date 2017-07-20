@@ -125,5 +125,21 @@ public class Function {
 		return 0;
 	}
 
+	// R1 Create
+	public static int GetChallenge(IsoDep iso, String[] strResponse, String[] strErrMsg) {
+		int res = 0;
+		String strCmd = "";
+
+		strCmd = "0084000010";
+		res = Apdu(iso, strCmd, strResponse, strErrMsg);
+		if (res < 0) {
+			return -1;
+		}
+
+		strResponse[0] = strResponse[0].substring(0, strResponse[0].length() - 4);
+
+		return 0;
+	}
+
 	
 }
