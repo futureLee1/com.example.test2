@@ -314,7 +314,7 @@ public class TestPlugin extends CordovaPlugin {
         }  
     }
 
-    private String getData_Vender_Code(IsoDep iso) {
+    private void getData_Vender_Code(IsoDep iso) {
         Log.d(TAG, "getData_Vender_Code()");
 
         int res = 0;
@@ -355,14 +355,11 @@ public class TestPlugin extends CordovaPlugin {
         if(iso.isConnected()){
             try {
                 iso.close();
-
-                return verder_code;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        return verder_code;
     }
 
     public int find(String[] arr, String s){

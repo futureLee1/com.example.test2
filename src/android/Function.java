@@ -198,7 +198,7 @@ public class Function {
 		return 0;
 	}
 
-	public static int GenerateOTP(IsoDep iso, String[] strResponse, String[] strErrMsg, String V, String OPIN, String OC, String Account, String Amount) {
+	/*public static int GenerateOTP(IsoDep iso, String[] strResponse, String[] strErrMsg, String V, String OPIN, String OC, String Account, String Amount) {
 		int res = 0;
 		String strCmd = "";
 		String strEncrypt = "";
@@ -252,6 +252,6 @@ public class Function {
 		}
 
 		return 0;
-	}
+	}*/
 
 }
