@@ -208,7 +208,11 @@ public class TestPlugin extends CordovaPlugin {
             }
 
             if(jsonData.equals("Select")) {
+                Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
                 Certification(iso);
+            } else if(jsonData.equals("Get_Vender_Code")) {
+                Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                getData_Vender_Code(iso);
             } else {
                 Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
             }
@@ -308,6 +312,55 @@ public class TestPlugin extends CordovaPlugin {
                 e.printStackTrace();
             }
         }  
+    }
+
+    private String getData_Vender_Code(IsoDep iso) {
+        Log.d(TAG, "getData_Vender_Code()");
+
+        int res = 0;
+
+        String strResponse[] = new String[1];
+        String strErrMsg[] = new String[1];
+        
+        res = 0;
+        res = Function.SelectFile(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("SelectFile", "Card Select Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+
+        Log.e("SelectFile",""+strResponse[0]);
+
+        String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
+
+        Log.e("strResult",""+strResult);        
+
+        Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();
+
+        res = 0;
+        res = Function.GetData_VENDOR_CODE(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("GetData_VENDOR_CODE", "Vender Code Read Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+        
+        Log.e("Vender Code Data", strResponse[0]);
+
+        String verder_code = strResponse[0];
+                    
+        if(iso.isConnected()){
+            try {
+                iso.close();
+
+                return verder_code;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public int find(String[] arr, String s){

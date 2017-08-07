@@ -197,4 +197,61 @@ public class Function {
 
 		return 0;
 	}
+
+	public static int GenerateOTP(IsoDep iso, String[] strResponse, String[] strErrMsg, String V, String OPIN, String OC, String Account, String Amount) {
+		int res = 0;
+		String strCmd = "";
+		String strEncrypt = "";
+		String TM = "";
+		String HTI = "";
+
+		// HTI 생성
+		if (!Account.equals("") && !Amount.equals("")) {
+			Account = Account.replaceAll("-", "");
+			Amount = Amount.replaceAll(",", "");
+			HTI = Account + Amount;
+			HTI = util.conversion.transSHA256(HTI);
+		}
+
+		// 기관코드
+		OC = util.conversion.decToHex(Integer.parseInt(OC), 6);
+
+		// TM(시간정보) 생성
+		long UTC_Milliseconds = System.currentTimeMillis();
+		long Seconds = UTC_Milliseconds / 1000;
+		TM = util.conversion.decToHex((int) Seconds, 8);
+
+		// OPIN 6자리 변환
+		if (OPIN.length() < 6) {
+			OPIN = OPIN + "00";
+		}
+
+		if (HTI.equals("")) {
+			strEncrypt = util.conversion.AES_CBC_128_ENCRYPT(V + OPIN + OC + TM + "8000000000", SessionKey);
+
+			if (strEncrypt.equals("")) {
+				return -1;
+			}
+
+			strCmd = "9422010010" + strEncrypt;
+			res = Apdu(iso, strCmd, strResponse, strErrMsg);
+			if (res < 0) {
+				return -1;
+			}
+		} else {
+			strEncrypt = util.conversion.AES_CBC_128_ENCRYPT(V + OPIN + OC + TM + HTI + "8000000000", SessionKey);
+			if (strEncrypt.equals("")) {
+				return -1;
+			}
+
+			strCmd = "9422010030" + strEncrypt;
+			res = Apdu(iso, strCmd, strResponse, strErrMsg);
+			if (res < 0) {
+				return -1;
+			}
+		}
+
+		return 0;
+	}
+
 }
