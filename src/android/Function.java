@@ -141,5 +141,60 @@ public class Function {
 		return 0;
 	}
 
-	
+	/************ New Smart OTP Function ************/
+
+	public static int SelectFile_New(IsoDep iso, String[] strResponse, String[] strErrMsg) {
+		int res = 0;
+		String strCmd = "";
+
+		strCmd = "00A4040007D400001577101000";
+		res = Apdu(iso, strCmd, strResponse, strErrMsg);
+		if (res < 0) {
+			return -1;
+		}
+
+		return 0;
+	}
+
+	public static int GetData_VENDOR_CODE(IsoDep iso, String[] strResponse, String[] strErrMsg) {
+		int res = 0;
+		String strCmd = "";
+
+		strCmd = "00CA000003";
+		res = Apdu(iso, strCmd, strResponse, strErrMsg);
+		if (res < 0) {
+			return -1;
+		}
+		strResponse[0] = strResponse[0].substring(0, strResponse[0].length() - 4);
+
+		return 0;
+	}
+
+	public static int GetData_VALID_DATE(IsoDep iso, String[] strResponse, String[] strErrMsg) {
+		int res = 0;
+		String strCmd = "";
+
+		strCmd = "00CA010004";
+		res = Apdu(iso, strCmd, strResponse, strErrMsg);
+		if (res < 0) {
+			return -1;
+		}
+		strResponse[0] = strResponse[0].substring(0, strResponse[0].length() - 4);
+
+		return 0;
+	}
+
+	public static int GetData_Serial_Num(IsoDep iso, String[] strResponse, String[] strErrMsg) {
+		int res = 0;
+		String strCmd = "";
+
+		strCmd = "00CA020006";
+		res = Apdu(iso, strCmd, strResponse, strErrMsg);
+		if (res < 0) {
+			return -1;
+		}
+		strResponse[0] = strResponse[0].substring(0, strResponse[0].length() - 4);
+
+		return 0;
+	}
 }

@@ -210,7 +210,7 @@ public class TestPlugin extends CordovaPlugin {
             if(jsonData.equals("Select")) {
                 Certification(iso);
             } else {
-                Toast.makeText(getActivity(), "ZZZZ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
             }
 
             
