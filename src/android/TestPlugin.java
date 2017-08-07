@@ -208,16 +208,29 @@ public class TestPlugin extends CordovaPlugin {
             }
 
             if(jsonData.equals("Select")) {
-                Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Select_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
                 Certification(iso);
-            } else if(jsonData.equals("Get_Vender_Code")) {
-                Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
-                getData_Vender_Code(iso);
-            } else {
-                Toast.makeText(getActivity(), "jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+            } 
+
+            if(jsonData.equals("Get_Vender_Code")) {
+                Toast.makeText(getActivity(), "Vender_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
             }
 
-            
+            if(jsonData.equals("Get_Valid_Date")) {
+                Toast.makeText(getActivity(), "Valid_date_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
+
+            if(jsonData.equals("Get_Serial_Number")) {
+                Toast.makeText(getActivity(), "SN_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
+
+            if(jsonData.equals("Generate_OTP")) {
+                Toast.makeText(getActivity(), "G_OTP_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
                         
             if(iso.isConnected()){
                 iso.close();
