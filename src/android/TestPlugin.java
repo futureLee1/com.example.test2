@@ -361,6 +361,8 @@ public class TestPlugin extends CordovaPlugin {
                 e.printStackTrace();
             }
         }
+
+        return verder_code;
     }
 
     public int find(String[] arr, String s){
