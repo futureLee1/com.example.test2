@@ -403,8 +403,152 @@ public class TestPlugin extends CordovaPlugin {
         }  
     }
 
-    private void getData_Vender_Code(IsoDep iso) {
+    private void getData_Vender_Code(IsoDep iso, CallbackContext mainCallbackContext) {
         Log.d(TAG, "getData_Vender_Code()");
+
+        int res = 0;
+
+        String strResponse[] = new String[1];
+        String strErrMsg[] = new String[1];
+        
+        res = 0;
+        res = Function.SelectFile(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("SelectFile", "Card Select Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+
+        Log.e("SelectFile",""+strResponse[0]);
+
+        String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
+
+        Log.e("strResult",""+strResult);        
+
+        /*Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();*/
+
+        res = 0;
+        res = Function.GetData_VALID_DATE(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("GetData_VALID_DATE", "Valid Date Read Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+        
+        Log.e("Valid Date Data", strResponse[0]);
+
+        String valid_date = strResponse[0];
+                    
+        if(iso.isConnected()){
+            try {
+                iso.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void getData_Valid_Date(IsoDep iso, CallbackContext mainCallbackContext) {
+        Log.d(TAG, "getData_Valid_Date()");
+
+        int res = 0;
+
+        String strResponse[] = new String[1];
+        String strErrMsg[] = new String[1];
+        
+        res = 0;
+        res = Function.SelectFile(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("SelectFile", "Card Select Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+
+        Log.e("SelectFile",""+strResponse[0]);
+
+        String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
+
+        Log.e("strResult",""+strResult);        
+
+        /*Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();*/
+
+        res = 0;
+        res = Function.GetData_VALID_DATE(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("getData_Valid_Date", "Valid Date Read Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+        
+        Log.e("Valid Date Data", strResponse[0]);
+
+        String valid_date = strResponse[0];
+                    
+        if(iso.isConnected()){
+            try {
+                iso.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void getData_Serial_Num(IsoDep iso, CallbackContext mainCallbackContext) {
+        Log.d(TAG, "getData_Serial_Num()");
+
+        int res = 0;
+
+        String strResponse[] = new String[1];
+        String strErrMsg[] = new String[1];
+        
+        res = 0;
+        res = Function.SelectFile(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("SelectFile", "Card Select Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+
+        Log.e("SelectFile",""+strResponse[0]);
+
+        String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
+
+        Log.e("strResult",""+strResult);        
+
+        /*Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();*/
+
+        res = 0;
+        res = Function.GetData_Serial_Num(iso, strResponse, strErrMsg);
+        if(res < 0){
+            Log.e("getData_Serial_Num", "Serial Number Read Failed");
+            strResponse = null;
+            strErrMsg = null;
+            return;
+        }
+        
+        Log.e("Serial Number Data", strResponse[0]);
+
+        String serial_number = strResponse[0];
+                    
+        if(iso.isConnected()){
+            try {
+                iso.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void generate_OTP(IsoDep iso, CallbackContext mainCallbackContext) {
+        Log.d(TAG, "generate_OTP()");
 
         int res = 0;
 
