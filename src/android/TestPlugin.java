@@ -414,13 +414,13 @@ public class TestPlugin extends CordovaPlugin {
         res = 0;
         res = Function.SelectFile(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("SelectFile", "Card Select Failed");
+            Log.e("SelectFile_New", "Card Select Failed");
             strResponse = null;
             strErrMsg = null;
             return;
         }
 
-        Log.e("SelectFile",""+strResponse[0]);
+        Log.e("SelectFile_New",""+strResponse[0]);
 
         String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
 
@@ -464,13 +464,13 @@ public class TestPlugin extends CordovaPlugin {
         res = 0;
         res = Function.SelectFile(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("SelectFile", "Card Select Failed");
+            Log.e("SelectFile_New", "Card Select Failed");
             strResponse = null;
             strErrMsg = null;
             return;
         }
 
-        Log.e("SelectFile",""+strResponse[0]);
+        Log.e("SelectFile_New",""+strResponse[0]);
 
         String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
 
@@ -512,15 +512,15 @@ public class TestPlugin extends CordovaPlugin {
         String strErrMsg[] = new String[1];
         
         res = 0;
-        res = Function.SelectFile(iso, strResponse, strErrMsg);
+        res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("SelectFile", "Card Select Failed");
+            Log.e("SelectFile_New", "Card Select Failed");
             strResponse = null;
             strErrMsg = null;
             return;
         }
 
-        Log.e("SelectFile",""+strResponse[0]);
+        Log.e("SelectFile_New",""+strResponse[0]);
 
         String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
 
@@ -560,15 +560,15 @@ public class TestPlugin extends CordovaPlugin {
         String strErrMsg[] = new String[1];
         
         res = 0;
-        res = Function.SelectFile(iso, strResponse, strErrMsg);
+        res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("SelectFile", "Card Select Failed");
+            Log.e("SelectFile_New", "Card Select Failed");
             strResponse = null;
             strErrMsg = null;
             return;
         }
 
-        Log.e("SelectFile",""+strResponse[0]);
+        Log.e("SelectFile_New",""+strResponse[0]);
 
         String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
 
