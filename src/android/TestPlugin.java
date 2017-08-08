@@ -219,27 +219,32 @@ public class TestPlugin extends CordovaPlugin {
 
             if(jsonData.equals("Select")) {
                 Toast.makeText(getActivity(), "Select_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+
                 Certification(iso, mainCallbackContext);
             } 
 
             if(jsonData.equals("Get_Vender_Code")) {
                 Toast.makeText(getActivity(), "Vender_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
-                //getData_Vender_Code(iso);
+
+                getData_Vender_Code(iso, mainCallbackContext);
             }
 
             if(jsonData.equals("Get_Valid_Date")) {
                 Toast.makeText(getActivity(), "Valid_date_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
-                //getData_Vender_Code(iso);
+                
+                getData_Valid_Date(iso, mainCallbackContext);
             }
 
             if(jsonData.equals("Get_Serial_Number")) {
                 Toast.makeText(getActivity(), "SN_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
-                //getData_Vender_Code(iso);
+                
+                getData_Serial_Num(iso, mainCallbackContext);
             }
 
             if(jsonData.equals("Generate_OTP")) {
                 Toast.makeText(getActivity(), "G_OTP_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
-                //getData_Vender_Code(iso);
+                
+                generate_OTP(iso, mainCallbackContext);
             }
                         
             if(iso.isConnected()){
@@ -540,6 +545,8 @@ public class TestPlugin extends CordovaPlugin {
         Log.e("Serial Number Data", strResponse[0]);
 
         String serial_number = strResponse[0];
+
+        mainCallbackContext.success(serial_number);
                     
         if(iso.isConnected()){
             try {
@@ -572,22 +579,22 @@ public class TestPlugin extends CordovaPlugin {
 
         String strResult = strResponse[0].substring(strResponse[0].length() - 4, strResponse[0].length());
 
-        Log.e("strResult",""+strResult);        
-
-        Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();
+        Log.e("strResult",""+strResult);
 
         res = 0;
-        res = Function.GetData_VENDOR_CODE(iso, strResponse, strErrMsg);
+        res = Function.GenerateOTP(iso, strResponse, strErrMsg, "01003");
         if(res < 0){
-            Log.e("GetData_VENDOR_CODE", "Vender Code Read Failed");
+            Log.e("generate_OTP", "Create OTP Number Failed");
             strResponse = null;
             strErrMsg = null;
             return;
         }
         
-        Log.e("Vender Code Data", strResponse[0]);
+        Log.e("OTP Number", strResponse[0]);
 
-        String verder_code = strResponse[0];
+        String otp_Number = strResponse[0];
+        
+        mainCallbackContext.success(otp_Number);
                     
         if(iso.isConnected()){
             try {

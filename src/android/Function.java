@@ -254,4 +254,36 @@ public class Function {
 		return 0;
 	}*/
 
+	public static int GenerateOTP(IsoDep iso, String[] strResponse, String[] strErrMsg, String OC) {
+		int res = 0;
+		String strCmd = "";
+		String strEncrypt = "";
+		String TM = "";
+		/*String key = "0123456789ABCDEF0123456789ABCDEF";*/
+		String key = "13131313131313133C8C21BD10674D71";
+		
+		// 기관코드
+		OC = Conversion.decToHex(Integer.parseInt(OC), 6);
+
+		// TM(시간정보) 생성
+		long UTC_Milliseconds = System.currentTimeMillis();
+		long Seconds = UTC_Milliseconds / 1000;
+		TM = Conversion.decToHex((int) Seconds, 8);
+
+		strEncrypt = Conversion.AES_CBC_128_ENCRYPT(OC + TM + "00", key);
+
+		if (strEncrypt.equals("")) {
+			return -1;
+		}
+
+		strCmd = "0022000007" + strEncrypt;
+		res = Apdu(iso, strCmd, strResponse, strErrMsg);
+		if (res < 0) {
+			return -1;
+		}
+
+		return 0;
+	}
+	
+
 }
