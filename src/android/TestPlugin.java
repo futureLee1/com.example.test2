@@ -30,6 +30,7 @@ public class TestPlugin extends CordovaPlugin {
 
         Log.d(TAG, "execute_Action " + action);
         Log.d(TAG, "execute_args " + args.getString(0));
+        Log.d(TAG, "execute_callbackContext " + callbackContext);
 
         String encodingData = Conversion.AES_CBC_128_ENCRYPT("12345678123456781234567800000000", "12345612345612345612345612345622");
         
@@ -186,9 +187,14 @@ public class TestPlugin extends CordovaPlugin {
     }
 
     @Override
-    public void onNewIntent(Intent intent) {
+    public void onNewIntent(Intent intent, String action, JSONArray args, CallbackContext callbackContext) {
         Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
+
+        Log.e(TAG, "onNewIntent_Action " + action);
+        Log.e(TAG, "onNewIntent_args " + args.getString(0));
+        Log.e(TAG, "onNewIntent_callbackContext " + callbackContext);
+
         super.onNewIntent(intent);
         setIntent(intent);
         /*parseMessage();*/
