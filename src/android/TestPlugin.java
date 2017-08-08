@@ -186,7 +186,7 @@ public class TestPlugin extends CordovaPlugin {
         startNfc();
     }
 
-    @Override
+    /*@Override*/
     public void onNewIntent(Intent intent, String action, JSONArray args, CallbackContext callbackContext) {
         Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
