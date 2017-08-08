@@ -25,6 +25,8 @@ public class TestPlugin extends CordovaPlugin {
 
     String jsonData = "";
 
+    CallbackContext mainCallbackContext = null;
+
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
@@ -66,7 +68,11 @@ public class TestPlugin extends CordovaPlugin {
         } else {
             Log.d(TAG, "getNfcStatus().equals(STATUS_NFC_OK)");
             String message = "Welcome ! ";
-            callbackContext.success(message);
+            //callbackContext.success(message);
+
+            mainCallbackContext = callbackContext;
+            
+            Log.e("execute_mainCallbackContext", ""+mainCallbackContext);
 
             startNfc();
 
@@ -191,6 +197,8 @@ public class TestPlugin extends CordovaPlugin {
         Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
 
+        Log.e("onNewIntent_mainCallbackContext", ""+mainCallbackContext);
+
         super.onNewIntent(intent);
         setIntent(intent);
         // parseMessage();
@@ -211,7 +219,7 @@ public class TestPlugin extends CordovaPlugin {
 
             if(jsonData.equals("Select")) {
                 Toast.makeText(getActivity(), "Select_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
-                Certification(iso);
+                Certification(iso, mainCallbackContext);
             } 
 
             if(jsonData.equals("Get_Vender_Code")) {
@@ -305,7 +313,7 @@ public class TestPlugin extends CordovaPlugin {
         
     }*/
 	
-    void parseMessage() {
+    /*void parseMessage() {
         Log.d(TAG, "parseMessage()");
         cordova.getThreadPool().execute(new Runnable() {
             @Override
@@ -345,10 +353,12 @@ public class TestPlugin extends CordovaPlugin {
 
             }
         });
-    }
+    }*/
 
-    private void Certification(IsoDep iso) {
+    private void Certification(IsoDep iso, CallbackContext mainCallbackContext) {
         Log.d(TAG, "Certification()");
+        Log.e("Certification", ""+mainCallbackContext);
+
         int res = 0;
         String strResponse[] = new String[1];
         String strErrMsg[] = new String[1];
@@ -380,6 +390,9 @@ public class TestPlugin extends CordovaPlugin {
         }
         
         Log.e("GetChallenge_Data", strResponse[0]);
+
+        String message = strResponse[0];
+        mainCallbackContext.success(message);
                     
         if(iso.isConnected()){
             try {
