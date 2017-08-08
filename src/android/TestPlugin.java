@@ -186,8 +186,8 @@ public class TestPlugin extends CordovaPlugin {
         startNfc();
     }
 
-    /*@Override*/
-    public void onNewIntent(Intent intent, String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+    @Override
+    public void onNewIntent(Intent intent){
         Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
 
@@ -197,7 +197,7 @@ public class TestPlugin extends CordovaPlugin {
 
         super.onNewIntent(intent);
         setIntent(intent);
-        /*parseMessage();*/
+        // parseMessage();
 
         Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
                 
@@ -247,6 +247,67 @@ public class TestPlugin extends CordovaPlugin {
         }
         
     }
+
+    /*public void onNewIntent(Intent intent, String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        Log.d(TAG, "onNewIntent()");
+        Log.d(TAG, "onNewIntent " + intent);
+
+        Log.e(TAG, "onNewIntent_Action " + action);
+        Log.e(TAG, "onNewIntent_args " + args.getString(0));
+        Log.e(TAG, "onNewIntent_callbackContext " + callbackContext);
+
+        super.onNewIntent(intent);
+        setIntent(intent);
+        // parseMessage();
+
+        Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+                
+        String[] TechList = tag.getTechList();
+        if(find(TechList, "android.nfc.tech.IsoDep") < 0){
+            return;
+        }
+
+        IsoDep iso = IsoDep.get(tag);
+
+        try{
+            if(!iso.isConnected()){
+                iso.connect();
+            }
+
+            if(jsonData.equals("Select")) {
+                Toast.makeText(getActivity(), "Select_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                Certification(iso);
+            } 
+
+            if(jsonData.equals("Get_Vender_Code")) {
+                Toast.makeText(getActivity(), "Vender_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
+
+            if(jsonData.equals("Get_Valid_Date")) {
+                Toast.makeText(getActivity(), "Valid_date_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
+
+            if(jsonData.equals("Get_Serial_Number")) {
+                Toast.makeText(getActivity(), "SN_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
+
+            if(jsonData.equals("Generate_OTP")) {
+                Toast.makeText(getActivity(), "G_OTP_jsonData : "+jsonData, Toast.LENGTH_SHORT).show();
+                //getData_Vender_Code(iso);
+            }
+                        
+            if(iso.isConnected()){
+                iso.close();
+            }
+
+        } catch(IOException e) {
+            Log.e("IsoDep Error", e.toString());
+        }
+        
+    }*/
 	
     void parseMessage() {
         Log.d(TAG, "parseMessage()");
