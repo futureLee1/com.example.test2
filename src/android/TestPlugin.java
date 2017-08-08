@@ -187,7 +187,7 @@ public class TestPlugin extends CordovaPlugin {
     }
 
     /*@Override*/
-    public void onNewIntent(Intent intent, String action, JSONArray args, CallbackContext callbackContext) {
+    public void onNewIntent(Intent intent, String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
 
