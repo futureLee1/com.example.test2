@@ -429,9 +429,9 @@ public class TestPlugin extends CordovaPlugin {
         /*Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();*/
 
         res = 0;
-        res = Function.GetData_VALID_DATE(iso, strResponse, strErrMsg);
+        res = Function.GetData_VENDOR_CODE(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("GetData_VALID_DATE", "Valid Date Read Failed");
+            Log.e("getData_Vender_Code", "Valid Date Read Failed");
             strResponse = null;
             strErrMsg = null;
             return;
@@ -439,7 +439,9 @@ public class TestPlugin extends CordovaPlugin {
         
         Log.e("Valid Date Data", strResponse[0]);
 
-        String valid_date = strResponse[0];
+        String vendor_Code = strResponse[0];
+
+        mainCallbackContext.success(vendor_Code);
                     
         if(iso.isConnected()){
             try {
@@ -488,6 +490,8 @@ public class TestPlugin extends CordovaPlugin {
         Log.e("Valid Date Data", strResponse[0]);
 
         String valid_date = strResponse[0];
+
+        mainCallbackContext.success(valid_date);
                     
         if(iso.isConnected()){
             try {
