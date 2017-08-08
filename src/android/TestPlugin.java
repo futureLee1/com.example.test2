@@ -191,10 +191,6 @@ public class TestPlugin extends CordovaPlugin {
         Log.d(TAG, "onNewIntent()");
         Log.d(TAG, "onNewIntent " + intent);
 
-        Log.e(TAG, "onNewIntent_Action " + action);
-        Log.e(TAG, "onNewIntent_args " + args.getString(0));
-        Log.e(TAG, "onNewIntent_callbackContext " + callbackContext);
-
         super.onNewIntent(intent);
         setIntent(intent);
         // parseMessage();
