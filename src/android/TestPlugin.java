@@ -373,9 +373,9 @@ public class TestPlugin extends CordovaPlugin {
         if(res < 0){
             Log.e("SelectFile","Card Select Failed");
 
-            String errorMsg = strResponse[0]+", "+strErrMsg[0];
-
+            String errorMsg = "Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
             mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -424,6 +424,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("SelectFile_New", "Card Select Failed");
+
+            String errorMsg = "Vender Code_Select"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -440,13 +444,17 @@ public class TestPlugin extends CordovaPlugin {
         res = 0;
         res = Function.GetData_VENDOR_CODE(iso, strResponse, strErrMsg);
         if(res < 0){
-            Log.e("getData_Vender_Code", "Valid Date Read Failed");
+            Log.e("getData_Vender_Code", "Vender Code Read Failed");
+
+            String errorMsg = "Vender Code_GetData"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
         }
         
-        Log.e("Valid Date Data", strResponse[0]);
+        Log.e("Vender Code", strResponse[0]);
 
         String vendor_Code = strResponse[0];
 
@@ -474,6 +482,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("SelectFile_New", "Card Select Failed");
+
+            String errorMsg = "Valid Date_Select"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -491,6 +503,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.GetData_VALID_DATE(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("getData_Valid_Date", "Valid Date Read Failed");
+
+            String errorMsg = "Valid Date_GetData"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -524,6 +540,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("SelectFile_New", "Card Select Failed");
+
+            String errorMsg = "Serial Number_Select"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -541,6 +561,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.GetData_Serial_Num(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("getData_Serial_Num", "Serial Number Read Failed");
+
+            String errorMsg = "Serial Number_GetData"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -574,6 +598,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("SelectFile_New", "Card Select Failed");
+
+            String errorMsg = "Generate OTP_Select"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
@@ -589,6 +617,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.GenerateOTP(iso, strResponse, strErrMsg, "01003");
         if(res < 0){
             Log.e("generate_OTP", "Create OTP Number Failed");
+
+            String errorMsg = "Generate OTP_GetData"+"\n"+"Response : "+strResponse[0]+"\n"+"Err Msg : "+strErrMsg[0];
+            mainCallbackContext.error(errorMsg);
+
             strResponse = null;
             strErrMsg = null;
             return;
