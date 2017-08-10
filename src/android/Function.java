@@ -270,7 +270,13 @@ public class Function {
 		long Seconds = UTC_Milliseconds / 1000;
 		TM = Conversion.decToHex((int) Seconds, 8);
 
-		strEncrypt = Conversion.AES_CBC_128_ENCRYPT(OC + TM + "00", key);
+		/*strEncrypt = Conversion.AES_CBC_128_ENCRYPT(OC + TM + "00", key);
+
+		if (strEncrypt.equals("")) {
+			return -1;
+		}*/
+
+		strEncrypt = OC + TM + "00";
 
 		if (strEncrypt.equals("")) {
 			return -1;
