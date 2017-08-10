@@ -628,7 +628,7 @@ public class TestPlugin extends CordovaPlugin {
         
         Log.e("OTP Number", strResponse[0]);
 
-        String otp_Number = strResponse[0];
+        String otp_Number = strResponse[0] = strResponse[0].substring(0, 6);
         
         mainCallbackContext.success(otp_Number);
                     
