@@ -389,7 +389,7 @@ public class TestPlugin extends CordovaPlugin {
 
         Toast.makeText(getActivity(), ""+strResult, Toast.LENGTH_LONG).show();
 
-        res = 0;
+        /*res = 0;
         res = Function.GetChallenge(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("GetChallenge","R1 Create Failed");
@@ -398,7 +398,7 @@ public class TestPlugin extends CordovaPlugin {
             return;
         }
         
-        Log.e("GetChallenge_Data", strResponse[0]);
+        Log.e("GetChallenge_Data", strResponse[0]);*/
 
         String message = strResponse[0];
         mainCallbackContext.success(message);
