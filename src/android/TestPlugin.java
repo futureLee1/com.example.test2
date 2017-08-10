@@ -372,8 +372,10 @@ public class TestPlugin extends CordovaPlugin {
         res = Function.SelectFile_New(iso, strResponse, strErrMsg);
         if(res < 0){
             Log.e("SelectFile","Card Select Failed");
+
             String errorMsg = strResponse[0]+", "+strErrMsg[0];
-            mainCallbackContext.error(message);
+            
+            mainCallbackContext.error(errorMsg);
             strResponse = null;
             strErrMsg = null;
             return;
